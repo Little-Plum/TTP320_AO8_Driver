@@ -4,7 +4,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#include "TTP320_AO8_hal.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -27,17 +27,6 @@ typedef enum {
   TTP_READ_CURRENT_NV = 0x16,
   TTP_READ_CURRENT_SCAN_FREQ = 0x17
 } TTP320_AO8_ReadRegs_t;
-
-typedef struct {
-  uint8_t (*read_sda)();
-  void (*sda_high)();
-  void (*sda_low)();
-  void (*scl_high)();
-  void (*scl_low)();
-  void (*sda_mode_out)();
-  void (*sda_mode_in)();
-  void (*delay_us)(size_t us);
-} ttp_io_i;
 
 typedef struct {
   uint32_t clk_period_us;

@@ -105,13 +105,14 @@ uint8_t ttp_comm_read_reg(ttp_handle_t *this, uint8_t cmd) {
     this->io->scl_low();
     this->io->delay_us(this->clk_half_period_us);
 
-    if (this->io->read_sda() == HIGH) {
-      data++;
-    }
-    data <<= 1;
+    // ensure only read LSB
+    data_bit = (1) & this->io->read_sda();
+    printf("bit: %#o read\n", data_bit);
+    data = (data << 1) | data_bit;
+
     this->io->scl_high();
     this->io->delay_us(this->clk_half_period_us);
   }
-  printf("data: 0x%x read\n", data);
+  printf("data: %#x read\n", data);
   return data;
 }

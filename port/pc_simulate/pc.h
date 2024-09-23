@@ -5,9 +5,10 @@
 extern "C" {
 #endif
 #include "TTP320_AO8.h"
+#include "TTP320_AO8_hal.h"
 #include <stdint.h>
-void ttp320_dev_pc_init();
 
+ttp_io_i *ttp320_pc_hal_init(void);
 
 #ifdef __cplusplus
 }
